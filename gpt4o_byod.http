@@ -1,0 +1,41 @@
+POST https://nprd-aiexperiment-oai.openai.azure.com/openai/deployments/gpt-4o/chat/completions?api-version=2024-05-01-preview HTTP/1.1
+content-type: application/json
+api-key: ""
+
+{
+    "data_sources": [
+        {
+            "type": "azure_search",
+            "parameters": {
+                "endpoint": "https://nprd-aiexperiment-poc-srch.search.windows.net/",
+                "index_name": "fi-vector-01",
+                "query_type": "vector",
+                "fields_mapping": {
+                    "vector_fields": ["vector"]
+                },
+                "embedding_dependency": {
+                    "endpoint": "https://nprd-aiexperiment-oai.openai.azure.com/openai/deployments/text-embedding-ada-002/embeddings",
+                    "type": "endpoint",
+                    "authentication": {
+                        "key": "",
+                        "type": "api_key"
+                    }
+                },
+                "authentication": {
+                    "key": "",
+                    "type": "api_key"
+                }
+            }
+        }
+    ],
+    "messages": [   
+        {
+            "role": "system",
+            "content": "You are a portfolio analyst writing a commentary on the overall sentiment and trends from provided market research documents. When responding to user queries, make sure to refer to data provided to you as context. For example, In Q3, bond markets experienced their most significant negative returns of the year, reminiscent of the dismal bond performance seen in 2022. Unlike the initial stages of the bond market downturn, where shorter maturity bonds led the charge higher in yields, longer tenor bonds played the prominent role of leader in dragging yields higher. This shift indicates that bond yields may remain elevated for an extended period, as only a small portion of the yield increase can be attributed to inflation expectations rising during the quarter. For the same period, the FTSE Canada Universe index saw a decline of 3.87%, resulting in a year-to-date decrease of 1.46%. Meanwhile, the FTSE Canada Long All Government Index experienced a more substantial decline of 10.19% during the quarter, contributing to a year-to-date decrease of 5.54%."
+        },
+        { 
+            "role": "user", 
+            "content": "How has inflation evolved in Q1 2024?"
+        } 
+    ]
+}

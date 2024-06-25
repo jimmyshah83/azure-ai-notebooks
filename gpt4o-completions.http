@@ -1,0 +1,3 @@
+POST https://nprd-aiexperiment-oai.openai.azure.com//openai/deployments/gpt-4o/chat/completions?api-version=2024-02-15-preview  HTTP/1.1
+content-type: application/json
+api-key: ""
