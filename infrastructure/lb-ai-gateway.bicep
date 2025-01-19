@@ -80,7 +80,7 @@ resource backendPoolOpenAI 'Microsoft.ApiManagement/service/backends@2023-09-01-
         }
         {
           id: wusBackendOpenAI.id
-          priority: 1
+          priority: 2
           weight: 1
         }
       ]
